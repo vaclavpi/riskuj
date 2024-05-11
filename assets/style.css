@@ -55,8 +55,8 @@ img {
 /* Media queries pro responzivní layout */
 @media (max-width: 768px) {
     .quiz-tab {
-        flex-basis: calc(50% - 20px); /* Nastaví šířku karty na 50% šířky rodičovského prvku pro menší obrazovky */
-        max-width: calc(50% - 20px); /* Nastaví maximální šířku karty na 50% šířky rodičovského prvku pro menší obrazovky */
+        flex-basis: calc(100% - 20px); /* Nastaví šířku karty na 50% šířky rodičovského prvku pro menší obrazovky */
+        max-width: calc(100% - 20px); /* Nastaví maximální šířku karty na 50% šířky rodičovského prvku pro menší obrazovky */
     }
 }
 
