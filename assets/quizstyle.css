@@ -3,6 +3,68 @@ body {
     background-color: #f3f3f3;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    padding: 20px;
+}
+
+h1 {
+    color: #3979B5;
+    text-align: center;
+}
+
+.quiz-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Nově přidané vlastnosti pro řádkování podle potřeby */
+}
+
+.quiz-tab {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 0 0 calc(33.33% - 20px); /* Nově přidaná vlastnost pro nastavení šířky karty */
+    max-width: calc(33.33% - 20px); /* Nově přidaná vlastnost pro maximální šířku karty */
+}
+
+.quiz-tab:hover {
+    background-color: #f0f0f0;
+}
+
+img {
+    width: 100%; /* Přizpůsobí obrázky šířce jejich rodičovského prvku */
+    height: auto;
+    border-radius: 3%;
+    -webkit-border-radius: 3%;
+    -moz-border-radius: 3%;
+    -ms-border-radius: 3%;
+    -o-border-radius: 3%;
+}
+
+/* Media queries pro responzivní layout */
+@media (max-width: 768px) {
+    .quiz-tab {
+        flex-basis: calc(50% - 20px); /* Nastaví šířku karty na 50% šířky rodičovského prvku pro menší obrazovky */
+        max-width: calc(50% - 20px); /* Nastaví maximální šířku karty na 50% šířky rodičovského prvku pro menší obrazovky */
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-tab {
+        flex-basis: calc(100% - 20px); /* Nastaví šířku karty na 100% šířky rodičovského prvku pro velmi malé obrazovky */
+        max-width: calc(100% - 20px); /* Nastaví maximální šířku karty na 100% šířky rodičovského prvku pro velmi malé obrazovky */
+    }
 }
 
 .container {
