@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Poznej skautské odborky!",
+        "description": "Co jsou to skautské odbrky, jak fungují, <br> pro koho jsou a proč se hodí je využívat?",
+        "image": "https://th.bing.com/th/id/R.141d5175cf07595a8ab60027f5647259?rik=tX8GQEsWOtfFAw&pid=ImgRaw&r=0",
+        "file": "assets/quizes/quiz1.json"
+    },
+    {
+        "name": "Poznáš skautské šátky?",
+        "description": "Pozáš nejrůznější skautské šátky ze světa? <br> Dokážes správně uhádnout odkud jsou? ",
+        "image": "https://th.bing.com/th/id/R.9b59945df2c0b3563421d739ea5751af?rik=ftkOZBms7hKp7A&pid=ImgRaw&r=0",
+        "file": "assets/quizes/quiz2.json"
+    }
+]

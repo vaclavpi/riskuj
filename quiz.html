@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riskuj</title>
+    <link rel="stylesheet" href="assets/quizstyle.css">
+    <style>
+        /* Styly pro vyskakovací okno */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Průhledný černý overlay */
+            z-index: 9999; /* Vyšší index než zbytek obsahu pro zobrazení nad obsahem */
+        }
+        
+        #popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Stín pro okraj vyskakovacího okna */
+        }
+
+        #popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* Styl pro select elementy */
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: white;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="assets/img/lilie.png" alt="Skautská lilie">
+        </header>
+        <h1 style="text-align: center;">Vítej ve hře "Skautské riskuj"!</h1>
+        <h2 id="quiz-name" style="text-align: center;"></h2>
+        <form id="quiz-form">
+            <!-- Zde bude kód pro načtení a zobrazení otázek a odpovědí z JSON souboru -->
+        </form>
+        <div id="score"></div> <!-- Zde bude zobrazeno skóre -->
+    </div>
+
+    <!-- Vyskakovací okno -->
+    <div id="popup-overlay">
+        <div id="popup-content">
+            <span id="popup-close" onclick="closePopup()">X</span>
+            <h3>Vaše skóre</h3>
+            <p id="popup-score"></p>
+        </div>
+    </div>
+
+    <script>
+        // Načtěte parametr URL pro získání cesty k JSON souboru
+        const queryParams = new URLSearchParams(window.location.search);
+        const quizFile = queryParams.get('quiz');
+        let data; // Proměnná pro ukládání dat z JSON souboru
+
+        // Načtěte data ze zadaného JSON souboru a inicializujte kvíz
+        fetch(quizFile)
+            .then(response => response.json())
+            .then(jsonData => {
+                data = jsonData; // Uložení dat do proměnné data pro pozdější použití
+                console.log(data); // Výpis dat pro ověření
+                const quizNameElement = document.getElementById('quiz-name');
+                quizNameElement.textContent = data.name; // Nastavte název kvízu
+                const form = document.getElementById('quiz-form');
+                data.questions.forEach(question => {
+                    question.forEach(q => {
+                        const label = document.createElement('label');
+                        label.textContent = q.question;
+                        form.appendChild(label);
+
+                        // Pokud jsou k dispozici možnosti odpovědí, zobrazte je
+                        if (q.options && q.options.length > 0) {
+                            const select = document.createElement('select');
+                            select.name = q.question;
+                            select.classList.add('select-option'); // Přidejte třídu pro stylizaci
+                            q.options.forEach(option => {
+                                const optionElement = document.createElement('option');
+                                optionElement.value = option;
+                                optionElement.textContent = option;
+                                select.appendChild(optionElement);
+                            });
+                            form.appendChild(select);
+                        } else {
+                            // Jinak vytvořte standardní textové pole pro odpověď
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.name = q.question;
+                            form.appendChild(input);
+                        }
+
+                        // Zkontrolujte, zda je definován obrázek pro otázku a není null, a zobrazte ho
+                        if (q.picture !== null) {
+                            const image = document.createElement('img');
+                            image.src = q.picture;
+                            image.alt = 'Obrázek';
+                            form.appendChild(image);
+                        }
+                    });
+                });
+                const submitButton = document.createElement('button');
+                submitButton.type = 'button'; // změna typu tlačítka na "button"
+                submitButton.textContent = 'Odeslat';
+                submitButton.style.backgroundColor = '#135f85'; // Změna barvy pozadí tlačítka
+                submitButton.style.color = 'white'; // Změna barvy textu tlačítka
+                submitButton.style.padding = '15px 20px'; // Zvětšení vnitřního odsazení tlačítka
+                submitButton.style.border = 'none'; // Odstranění ohraničení tlačítka
+                submitButton.style.borderRadius = '5px'; // Zaoblení rohů tlačítka
+                submitButton.style.cursor = 'pointer'; // Přidání kurzoru jako indikátoru interaktivity
+                submitButton.style.width = '100%'; // Šířka tlačítka
+                submitButton.addEventListener('click', () => {
+                    calculateScore(); // Spočítá skóre po kliknutí na tlačítko
+                });
+                form.appendChild(submitButton);
+            })
+            .catch(error => console.error('Chyba při načítání kvízu:', error));
+
+        function calculateScore() {
+            const formData = new FormData(document.getElementById('quiz-form'));
+            let correctAnswers = 0;
+
+            // Porovnejte odpovědi uživatele s odpověďmi z dat JSON souboru
+            data.questions.forEach(question => {
+                question.forEach(q => {
+                    const userAnswer = formData.get(q.question);
+                    if (userAnswer && userAnswer.toLowerCase() === q.answer.toLowerCase()) {
+                        correctAnswers++;
+                    }
+                });
+            });
+
+            // Zobrazte skóre ve vyskakovacím okně
+            displayScore(correctAnswers);
+        }
+
+        function displayScore(score) {
+            const popupOverlay = document.getElementById('popup-overlay');
+            const popupScore = document.getElementById('popup-score');
+            popupScore.textContent = `Vaše skóre: ${score}`;
+            popupOverlay.style.display = 'block'; // Zobrazení vyskakovacího okna
+        }
+
+        function closePopup() {
+            const popupOverlay = document.getElementById('popup-overlay');
+            popupOverlay.style.display = 'none'; // Skrytí vyskakovacího okna
+        }
+    </script>
+</body>
+</html>

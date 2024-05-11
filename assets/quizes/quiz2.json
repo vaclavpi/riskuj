@@ -1,0 +1,46 @@
+{
+    "name": "Poznáš skautské šátky?",
+    "description": "Pozáš nejrůznější skautské šátky ze světa? <br> Dokážes správně uhádnout odkud jsou? ",
+    "image": "https://th.bing.com/th/id/OIP.4u5cw4R5lyZb4ZhZ0TqjjQHaJy?rs=1&pid=ImgDetMain",
+    "file": "assets/quizes/quiz2.json", 
+    "questions": [
+        [
+            {
+                "question": "Odkud je tento šátek?",
+                "answer": "AFGÁNISTÁN",
+                "options": ["INDIE", "KOLUMBIE", "FRANCIE", "AFGÁNISTÁN"],
+                "picture": "https://th.bing.com/th/id/OIP.dmICDUc8EiccIKLvfImiQgHaHU?rs=1&pid=ImgDetMain"
+            },
+            {
+                "question": "Odkud jsou tyto šátky?",
+                "answer": "ITÁLIE",
+                "options": ["PORTUGALSKO", "ITÁLIE", "RUMUNSKO", "KAMEROUN"],
+                "picture": "https://images-cdn.kahoot.it/fd37cf3a-eccc-4a0d-b2a2-9613e6e25392?auto=webp"
+            },
+            {
+                "question": "Odkud je tento šátek?",
+                "answer": "SPOJENÉ KRÁLOVSTVÍ VELKÉ BRITÁNIE A SEVERNÍHO IRSKA",
+                "options": ["MALAJSIE", "KANADA", "SLOVENSKÁ REPUBLIKA", "SPOJENÉ KRÁLOVSTVÍ VELKÉ BRITÁNIE A SEVERNÍHO IRSKA"],
+                "picture": "https://images-cdn.kahoot.it/a37f8fb8-311f-4690-a4bf-0de784df4058?auto=webp"
+            },
+            {
+                "question": "Odkud je tento šátek?",
+                "answer": "MALAJSIE",
+                "options": ["ŠPANĚLSKO", "MALAJSIE", "ČESKÁ REPUBLIKA", "SPOJENÉ KRÁLOVSTVÍ VELKÉ BRITÁNIE A SEVERNÍHO IRSKA"],
+                "picture": "https://cf.shopee.com.my/file/b55e699964b52299822215eedeb2fe47"
+            },
+            {
+                "question": "Odkud je tento šátek?",
+                "answer": "TCHAJ-WAN",
+                "options": ["VIETNAM", "LAOS", "TCHAJ-WAN", "GRUZIE"],
+                "picture": "https://i.ebayimg.com/images/g/juoAAMXQUShQ8ll9/s-l1600.webp"
+            },
+            {
+                "question": "Odkud jsou tyto šátky?",
+                "answer": "NORSKO",
+                "options": ["NORSKO", "IRSKO", "POLSKO", "FINSKO"],
+                "picture": "https://th.bing.com/th/id/R.d7c2bbf67cd6b31f1107ef977a429524?rik=bGDPay3lHoC81g&pid=ImgRaw&r=0"
+            }
+        ]
+    ]
+}
