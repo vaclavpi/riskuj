@@ -38,7 +38,7 @@
             {
                 "question": "Odkud jsou tyto šátky?",
                 "answer": "NORSKO",
-                "options": ["0", "NORSKO", "IRSKO", "POLSKO", "FINSKO"],
+                "options": ["0",  "NORSKO", "IRSKO", "POLSKO", "FINSKO"],
                 "picture": "https://th.bing.com/th/id/R.d7c2bbf67cd6b31f1107ef977a429524?rik=bGDPay3lHoC81g&pid=ImgRaw&r=0"
             }
         ]
